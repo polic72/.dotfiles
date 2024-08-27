@@ -1,0 +1,6 @@
+.bashrc|~
+defaults.vim|$VIMRUNTIME
+DIR_COLORS|/etc
+.dir_colors|~
+.vim|~
+.vimrc|~
