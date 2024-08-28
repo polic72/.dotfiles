@@ -1,6 +1,16 @@
+#Tests:
+#.bashrc|~/Personal Projects/.dotfiles/test
+##defaults.vim|$VIMRUNTIME
+##DIR_COLORS|/etc
+#.dir_colors|~/Personal Projects/.dotfiles/test
+#.vim|~/Personal Projects/.dotfiles/test
+#.vimrc|~/Personal Projects/.dotfiles/test
+
+
+#Real Deal:
 .bashrc|~
-defaults.vim|$VIMRUNTIME
-DIR_COLORS|/etc
+#defaults.vim|$VIMRUNTIME
+#DIR_COLORS|/etc
 .dir_colors|~
 .vim|~
 .vimrc|~
