@@ -14,3 +14,4 @@
 .dir_colors|~
 .vim|~
 .vimrc|~
+nvim|~/.config
