@@ -73,20 +73,21 @@ return {
         }
 
 
-        -- This is copied from kickstart, but I like the icons.
+        -- This is partially copied from kickstart; I like some of the icons.
         require("dapui").setup {
             icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
             controls = {
                 icons = {
                     pause = '⏸',
                     play = '▶',
-                    step_into = '⏎',
-                    step_over = '⏭',
-                    step_out = '⏮',
+                    step_into = '⤓',
+                    step_over = '↷',
+                    step_out = '↥',
                     step_back = 'b',
                     run_last = '▶▶',
                     terminate = '⏹',
                     disconnect = '⏏',
+
                 }
             }
         }
