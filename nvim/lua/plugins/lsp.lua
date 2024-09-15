@@ -16,6 +16,10 @@ return {
 
         -- Adds extra LSP functionality. We will need to tells neovim and the LSPs that this is a thing later...
         "hrsh7th/cmp-nvim-lsp",
+
+
+        -- Adds even more functionality, specifically for method overloads.
+        "Issafalcon/lsp-overloads.nvim",
     },
 
     config = function()
@@ -39,7 +43,10 @@ return {
                     Lua = {
                         completion = {
                             callSnippet = "Replace"
-                        }
+                        },
+
+                        -- Gets rid of the annoying 'missing-fields' warning.
+                        diagnostics = { disable = { 'missing-fields' } },
                     }
                 }
             }
@@ -69,6 +76,10 @@ return {
 
             -- This is the function that runs on the event call.
             callback = function(lsp_attach_event)
+                -- The LSP client to configure as we go along.
+                local client = vim.lsp.get_client_by_id(lsp_attach_event.data.client_id)
+
+
                 -- Creating a helper function to map keymaps for only the buffers that get called by this event.
                 local map = function(mode, keys, func, desc)
                     vim.keymap.set(mode, keys, func, { buffer = lsp_attach_event.buf, desc = "LSP: " .. desc })
@@ -111,8 +122,25 @@ return {
                 map("n", "gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
 
+                -- Show the signatureHelpProvider window.
+                map("n", "L", ":LspOverloadsSignature<CR>", "Show Signature Help")
+
+
+                -- Adding better overload handling.
+                if client and client.server_capabilities.signatureHelpProvider then
+                    require("lsp-overloads").setup(client, {
+                        -- Changing up some keymaps.
+                        --keymaps = {
+                        --    -- Actually don't do this, it makes editting more annoying.
+                        --    --close_signature = "<Esc>"
+                        --},
+
+                        display_automatically = true
+                    })
+                end
+
+
                 -- Recreate the highlight effect when hovering over a symbol.
-                local client = vim.lsp.get_client_by_id(lsp_attach_event.data.client_id)
                 if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
                     local highlight_augroup = vim.api.nvim_create_augroup("polic72-lsp-highlight", { clear = false })
 
@@ -137,8 +165,6 @@ return {
                         end,
                     })
                 end
-
-
             end
         })
     end
