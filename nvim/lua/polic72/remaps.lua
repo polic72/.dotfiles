@@ -6,7 +6,8 @@ vim.g.maplocalleader = " "
 -- Mindful group:
     -- Pasting:
     vim.keymap.set("v", "<leader>p", '"_dP', { desc = "Delete and [P]aste without unnamed reg change" })
-    vim.keymap.set("n", "<leader>p", '"_diwP', { desc = "Delete and [P]aste without unnamed reg change" })
+    vim.keymap.set("n", "<leader>p", '"_diwP', { desc = "Delete word and [P]aste without unnamed reg change" })
+    vim.keymap.set("n", "<leader>P", '"_diWP', { desc = "Delete WORD and [P]aste without unnamed reg change" })
 
     -- Changing:
     vim.keymap.set("v", "<leader>c", '"_c', { desc = "[C]hange without unnamed reg change" })
