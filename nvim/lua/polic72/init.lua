@@ -4,6 +4,7 @@ require("polic72.options")
 
 
 -- Sync WSL clipboard with system clipboard if using WSL:
+-- Thanks to Tushar Singh for the help on this one (https://stackoverflow.com/questions/75548458/copy-into-system-clipboard-from-neovim#answer-76388417)
 if vim.fn.has("wsl") == 1 then
     if vim.fn.executable("wl-copy") == 0 then
         print("install \"wl-copy\" to get the clipboard to work properly")
