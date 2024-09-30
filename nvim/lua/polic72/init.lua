@@ -3,6 +3,31 @@ require("polic72.remaps")
 require("polic72.options")
 
 
+-- Sync WSL clipboard with system clipboard if using WSL:
+if vim.fn.has("wsl") == 1 then
+    if vim.fn.executable("wl-copy") == 0 then
+        print("install \"wl-copy\" to get the clipboard to work properly")
+    else
+        vim.g.clipboard = {
+            name = "wl-clipboard (WSL)",
+            copy = {
+                ["+"] = 'wl-copy --foreground --type text/plain',
+                ["*"] = 'wl-copy --foreground --primary --type text/plain',
+            },
+            paste = {
+                ["+"] = (function ()
+                    return vim.fn.systemlist('wl-paste|sed -e "s/\r$//"', {''}, 1)
+                end),
+                ["*"] = (function ()
+                    return vim.fn.systemlist('wl-paste --primary|sed -e "s/\r$//"', {''}, 1)
+                end),
+            },
+            cache_enabled = true
+        }
+    end
+end
+
+
 -- Go to last read position of a file after reopening (legit why is this not default behavior?):
 vim.api.nvim_create_autocmd("BufReadPost", {
 	desc = "Return to last editted position.",
