@@ -47,6 +47,19 @@ vim.keymap.set("n", "<leader>y", '"+y', { desc = "[Y]ank to clipboard" })
 vim.keymap.set("n", "<Esc>", "<Cmd>nohls<CR>")
 
 
+-- -- Comments:
+-- vim.keymap.set("v", "<C-K>c",
+--     function ()
+--         vim.cmd("norm gc")
+--     end, { desc = "[C]omment currently selected lines" })
+-- --vim.keymap.set("n", "<C-K>c", "gcc", { desc = "[C]omment [C]urrent lines" })
+-- vim.keymap.set("v", "<C-K>u",
+--     function ()
+--         vim.cmd("norm gc")
+--     end, { desc = "Un[c]omment currently selected lines" })
+-- --vim.keymap.set("n", "<C-K>u", "gcc", { desc = "Un[c]omment [C]urrent lines" })
+
+
 -- Put diagnostics to the location list:
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setqflist, { desc = "Open diagnostic [Q]uickfix list" })
 

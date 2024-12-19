@@ -1,6 +1,7 @@
 -- Load my other settings:
 require("polic72.remaps")
 require("polic72.options")
+require("polic72.functions")
 
 
 -- Sync WSL clipboard with system clipboard if using WSL:
