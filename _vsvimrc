@@ -7,6 +7,9 @@ set rnu
 set is
 set hls
 
+set ignorecase
+set smartcase
+
 set scrolloff=10
 set virtualedit=block
 
