@@ -1,0 +1,59 @@
+nnoremap gj gT
+nnoremap gk gt
+
+set nu
+set rnu
+
+set is
+set hls
+
+set scrolloff=10
+set virtualedit=block
+
+
+" Remaps:
+let mapleader=" "
+
+    " Editting:
+    vnoremap <Leader>p "_dP
+    nnoremap <Leader>p "_diwP
+    nnoremap <Leader>P "_diWP
+
+    vnoremap <Leader>d "_d
+    nnoremap <Leader>d viw"_d
+
+    vnoremap <Leader>/ "/yn
+    nnoremap <Leader>/ viw"/yn
+
+    vnoremap <Leader>c "_c
+    nnoremap <Leader>ciw "_ciw
+
+    vnoremap <Leader>y "+y
+    nnoremap <Leader>y "+y
+    nnoremap <Leader>yiw "+yiw
+    nnoremap <Leader>yiW "+yiW
+
+
+    " Movement:
+    nnoremap <C-D> <C-D>zz
+    nnoremap <C-U> <C-U>zz
+
+    nnoremap <C-F> <C-F>zz
+    nnoremap <C-B> <C-B>zz
+
+
+    " Nice HLS clearing:
+    nnoremap <Esc> :nohls<CR>
+
+
+    " Quickfix:
+    nnoremap [q :<C-u>cprev<CR>
+    nnoremap ]q :<C-u>cnext<CR>
+
+
+    " Busywork:
+    nnoremap <Leader>err mn"yyiw/{<CR>%?CSharp_Helpers.Check_ArgumentNull<CR>yypf(wviw"ypf(wviw"yp`nWW
+
+    nnoremap <Leader>seeh i<see href=""></see>
+    vnoremap <Leader>seeh "yc<see<Esc>F<myEa href<Esc>a=""><Esc>"ypa<Esc>`yf""+pf>;
+    "vnoremap <Leader>seeh "yc<see<Esc>F<myEa href<Esc>a=""><Esc>"ypa</see><Esc>`yf""+pf>;
