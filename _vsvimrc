@@ -36,6 +36,8 @@ let mapleader=" "
     nnoremap <Leader>yiw "+yiw
     nnoremap <Leader>yiW "+yiW
 
+    nnoremap Y y$
+
 
     " Movement:
     nnoremap <C-D> <C-D>zz
