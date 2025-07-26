@@ -1,5 +1,8 @@
 -- This is the big boi, responsible for the main features one would expect from a true IDE.
 
+-- If, for whatever reason, you're looking here for why marksman won't work,
+-- just touch a .marksman.toml in the root of the notes folder and it'll work.
+
 return {
     "neovim/nvim-lspconfig",
 
@@ -141,7 +144,7 @@ return {
 
 
                 -- Recreate the highlight effect when hovering over a symbol.
-                if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+                if client and client.supports_method(client, vim.lsp.protocol.Methods.textDocument_documentHighlight) then
                     local highlight_augroup = vim.api.nvim_create_augroup("polic72-lsp-highlight", { clear = false })
 
                     vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
