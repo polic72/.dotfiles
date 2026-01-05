@@ -38,6 +38,9 @@ let mapleader=" "
 
     nnoremap Y y$
 
+    "nnoremap <Leader>= :'[,']norm ==<CR>
+    nnoremap <Leader>= '[V']=
+
 
     " Movement:
     nnoremap <C-D> <C-D>zz

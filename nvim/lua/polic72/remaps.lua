@@ -19,9 +19,12 @@ vim.g.maplocalleader = " "
     vim.keymap.set("n", "<leader>diw", '"_diw', { desc = "Delete [w]ord without unnamed reg change" })
     vim.keymap.set("n", "<leader>diW", '"_diW', { desc = "Delete [W]ORD without unnamed reg change" })
 
-    -- Replacing
+    -- Replacing:
     vim.keymap.set("v", "<leader>r", '"_r', { desc = "[R]eplace without unnamed reg change" })
     vim.keymap.set("n", "<leader>r", '"_r', { desc = "[R]eplace without unnamed reg change" })
+
+    -- Cleanup:
+    vim.keymap.set("n", "<leader>=", '\'[V\']=')
 
 
 -- Movement:
@@ -36,6 +39,9 @@ vim.keymap.set("n", "#", "#zz", { desc = "Search up and recenter" })
 
 vim.keymap.set("n", "n", "nzz", { desc = "Next and recenter" })
 vim.keymap.set("n", "N", "Nzz", { desc = "Previous and recenter" })
+
+--vim.keymap.set("n", "<A-J>", "gj")
+--vim.keymap.set("n", "<A-K>", "gk")
 
 
 -- Yank to clipboard:
