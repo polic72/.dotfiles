@@ -1,0 +1,4 @@
+require("plugins.colorscheme")
+require("plugins.telescope")
+require("plugins.gitsigns")
+require("plugins.lsp")
