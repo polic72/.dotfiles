@@ -33,7 +33,7 @@ vim.lsp.config("lua-ls", {
     settings = {
         Lua = {
             diagnostics = {
-                globals = { 'vim' }
+                globals = { 'vim' } -- Just adds "vim" to a list of globals because otherwise these configs all have warnings.
             }
         }
     }
@@ -41,6 +41,27 @@ vim.lsp.config("lua-ls", {
 vim.lsp.enable("lua-ls")
 
 
---vim.api.nvim_create_autocmd("LspAttach", {
---
---})
+vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("polic72-lsp-attach", { clear = true }),
+    desc = "The LSP attachment that adds all my keymappings, extra capabilities, and other stuff for LSP servers.",
+
+    callback = function(lsp_attach_event)
+        local client = vim.lsp.get_client_by_id(lsp_attach_event.data.client_id)
+
+        local map = function(mode, lhs, rhs, desc)
+            vim.keymap.set(mode, lhs, rhs, { buffer = lsp_attach_event.buf, desc = "LSP: " .. desc})
+        end
+
+
+        -- Could use 'vim.lsp.buf' for all of these, but I prefer how telescope looks over the quickfix list, so I'm using those.
+        local tele = require("telescope.builtin")
+
+        map("n", "gd", tele.lsp_definitions, "[G]oto [D]efinition")
+        map("n", "gr", tele.lsp_references, "[G]oto [R]eferences")
+        map("n", "gI", tele.lsp_implementations, "[G]oto [I]mplementations")
+        map("n", "<leader>ds", tele.lsp_document_symbols, "[D]ocument [S]ymbols")
+        map("n", "<leader>ws", tele.lsp_workspace_symbols, "[W]orkspace [S]ymbols")
+        map("n", "<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+        map("n", "<leader>kk", vim.lsp.buf.code_action, "[K]ode [K]action") -- This is suggestions on what to do to fix an error.
+    end
+})
