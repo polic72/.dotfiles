@@ -13,14 +13,19 @@ vim.pack.add({
 
     -- This is just a nice helper package that marries the previous 2 pacakages together.
     -- It'll automatically enable configs from lspconfig for installed LSP servers from Mason.
-    "https://github.com/mason-org/mason-lspconfig.nvim"
+    "https://github.com/mason-org/mason-lspconfig.nvim",
+
+    -- This makes really nice-looking fuction overload pop-up windows that can be read and searched through.
+    "https://github.com/Issafalcon/lsp-overloads.nvim"
 })
 
 
 require("mason").setup()
 require("mason-lspconfig").setup({
     automatic_enable = {
-        "lua-ls"
+        "lua-ls",
+        "clangd",
+        "omnisharp"
     }
 })
 
@@ -40,6 +45,11 @@ vim.lsp.config("lua-ls", {
 })
 vim.lsp.enable("lua-ls")
 
+
+--require("lsp-overloads").setup({
+--    override_native_handler = false,
+--    display_automatically = true
+--})
 
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("polic72-lsp-attach", { clear = true }),
@@ -63,5 +73,35 @@ vim.api.nvim_create_autocmd("LspAttach", {
         map("n", "<leader>ws", tele.lsp_workspace_symbols, "[W]orkspace [S]ymbols")
         map("n", "<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
         map("n", "<leader>kk", vim.lsp.buf.code_action, "[K]ode [K]action") -- This is suggestions on what to do to fix an error.
+        map("n", "<leader>kk", vim.lsp.buf.code_action, "[K]ode [K]action") -- This is suggestions on what to do to fix an error.
+
+        --if client and client.server_capabilities.signatureHelperProvider then
+        --    require("lsp-overloads").on_attach(client, lsp_attach_event.buf)
+        --end
+        --map("n", "L", "<cmd>LspOverloads signature<CR>", "[L] is now show signature")
+
+        if client and client:supports_method("textDocument/documentHighlight", lsp_attach_event.buf) then
+            local hl_group = vim.api.nvim_create_augroup("polic72-hl-group", { clear = false })
+
+            vim.api.nvim_create_autocmd({"CursorHold", "CursorHoldI"}, {
+                buf = lsp_attach_event.buf,
+                group = hl_group,
+                callback = vim.lsp.buf.document_highlight
+            })
+
+            vim.api.nvim_create_autocmd({"CursorMoved", "CursorMovedI"}, {
+                buf = lsp_attach_event.buf,
+                group = hl_group,
+                callback = vim.lsp.buf.clear_references
+            })
+
+            vim.api.nvim_create_autocmd("LspDetach", {
+                group = vim.api.nvim_create_augroup("polic72-lsp-detach", { clear = false }),
+                callback = function(lsp_detach_event)
+                    vim.lsp.buf.clear_references()
+                    vim.api.nvim_clear({ buf = lsp_detach_event.buf, group = hl_group })
+                end
+            })
+        end
     end
 })

@@ -1,0 +1,25 @@
+-- This is en extension to the LSP that handles just autocomplete, because that's big enough to be its own thing.
+
+vim.pack.add({
+    "https://github.com/nvim-mini/mini.completion",
+    "https://github.com/nvim-mini/mini.icons"
+})
+
+
+require("mini.icons").setup({
+    -- Uncomment this if the icons cause any issues on terminal emulator.
+    -- style = "ascii"
+})
+
+require("mini.completion").setup({
+    mappings = {
+        scroll_down = "<C-n>",
+        scroll_up = "<C-p>",
+    },
+    fallback_action = "<C-x><C-l>",
+    --source_func = "omnifunc"
+})
+
+
+vim.keymap.set("i", "<Tab>", [[pumvisible() ? "\<C-n>" : "\<Tab>"]], { expr = true })
+vim.keymap.set("i", "<S-Tab>", [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]], { expr = true })
