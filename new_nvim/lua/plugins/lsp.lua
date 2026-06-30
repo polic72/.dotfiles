@@ -25,7 +25,8 @@ require("mason-lspconfig").setup({
     automatic_enable = {
         "lua-ls",
         "clangd",
-        "omnisharp"
+        "omnisharp",
+        "pylsp"
     }
 })
 

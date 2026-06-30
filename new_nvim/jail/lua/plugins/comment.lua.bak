@@ -1,0 +1,44 @@
+-- Makes commenting/uncommenting far easier.
+
+return {
+    "numToStr/Comment.nvim",
+
+    opts = {
+        mappings = {
+            basic = false,
+            extra = false
+        }
+    }
+
+
+    -- mappings = {
+    --     basic = false,
+    --     extra = false
+    -- }
+
+    -- config = function ()
+    --     --local comment = require("Comment.config")
+    --     local comment = require("Comment")
+    --
+    --     -- comment.setup {
+    --     --     mappings = { basic = false, extra = false }
+    --     -- }
+    --
+    --     comment.setup({
+    --         mappings = { basic = false, extra = false }
+    --     })
+    --
+    --     -- comment.mappings.basic = false
+    --     -- comment.mappings.extra = false
+    --     --comment.mappings = { basic = false, extra = false }
+    --
+    --     -- comment.mappings = { basic = false, extra = false }
+    -- end
+
+    -- opts = {
+    --     mappings = {
+    --         basic = false,
+    --         extra = false
+    --     }
+    -- }
+}
