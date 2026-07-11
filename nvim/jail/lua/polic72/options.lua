@@ -69,8 +69,3 @@ vim.opt.mouse = "a"
 
 -- Minimum characters kept on screen above and below cursor:
 vim.opt.scrolloff = 10
-
-
--- Confirm save and close instead of be annoying:
---vim.opt.confirm = true
--- Leaving off for now.

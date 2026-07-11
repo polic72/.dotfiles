@@ -40,6 +40,9 @@ vim.keymap.set("n", "#", "#zz", { desc = "Search up and recenter" })
 vim.keymap.set("n", "n", "nzz", { desc = "Next and recenter" })
 vim.keymap.set("n", "N", "Nzz", { desc = "Previous and recenter" })
 
+--vim.keymap.set("n", "<A-J>", "gj")
+--vim.keymap.set("n", "<A-K>", "gk")
+
 
 -- Yank to clipboard:
 vim.keymap.set("v", "<leader>y", '"+y', { desc = "[Y]ank to clipboard" })
@@ -70,19 +73,3 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setqflist, { desc = "Open diagno
 -- Move through quick fix list:
 vim.keymap.set("n", "<C-J>", "<Cmd>cnext<CR>")
 vim.keymap.set("n", "<C-K>", "<Cmd>cprev<CR>")
-
-
--- Window navigation (copied from example-init.lua) (might not work on WSL):
--- Map <A-j>, <A-k>, <A-h>, <A-l> to navigate between windows in any modes
-vim.keymap.set({ 't', 'i' }, '<A-h>', '<C-\\><C-n><C-w>h')
-vim.keymap.set({ 't', 'i' }, '<A-j>', '<C-\\><C-n><C-w>j')
-vim.keymap.set({ 't', 'i' }, '<A-k>', '<C-\\><C-n><C-w>k')
-vim.keymap.set({ 't', 'i' }, '<A-l>', '<C-\\><C-n><C-w>l')
-vim.keymap.set({ 'n' }, '<A-h>', '<C-w>h')
-vim.keymap.set({ 'n' }, '<A-j>', '<C-w>j')
-vim.keymap.set({ 'n' }, '<A-k>', '<C-w>k')
-vim.keymap.set({ 'n' }, '<A-l>', '<C-w>l')
-
--- Consider doing this instead:
--- vim.keymap.set("n", "<A-J>", "gj")
--- vim.keymap.set("n", "<A-K>", "gk")
