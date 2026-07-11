@@ -47,10 +47,15 @@ vim.lsp.config("lua-ls", {
 vim.lsp.enable("lua-ls")
 
 
---require("lsp-overloads").setup({
---    override_native_handler = false,
---    display_automatically = true
---})
+-- Controls of the pop-up are:
+-- - <C-k>/<C-j> for cycling between overloads.
+-- - <C-h>/<C-l> for cycling between parameters.
+-- - <C-u>/<C-d> for scrolling up/down in the pop-up.
+require("lsp-overloads").setup({
+    override_native_handler = true,
+    display_automatically = true
+})
+
 
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("polic72-lsp-attach", { clear = true }),
@@ -74,12 +79,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
         map("n", "<leader>ws", tele.lsp_workspace_symbols, "[W]orkspace [S]ymbols")
         map("n", "<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
         map("n", "<leader>kk", vim.lsp.buf.code_action, "[K]ode [K]action") -- This is suggestions on what to do to fix an error.
-        map("n", "<leader>kk", vim.lsp.buf.code_action, "[K]ode [K]action") -- This is suggestions on what to do to fix an error.
 
-        --if client and client.server_capabilities.signatureHelperProvider then
-        --    require("lsp-overloads").on_attach(client, lsp_attach_event.buf)
-        --end
-        --map("n", "L", "<cmd>LspOverloads signature<CR>", "[L] is now show signature")
+        map("n", "L", "<cmd>LspOverloads signature<CR>", "[L] is now show signature")
 
         if client and client:supports_method("textDocument/documentHighlight", lsp_attach_event.buf) then
             local hl_group = vim.api.nvim_create_augroup("polic72-hl-group", { clear = false })
